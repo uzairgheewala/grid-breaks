@@ -32,9 +32,6 @@ questions:
 - Renamed unwieldy columns:  
   `POPDEN_RURAL`, `POPDEN_UC`, … for clarity.
 
-<details>
-<summary>Click to view first 5 rows</summary>
-
 ```text
 |   YEAR | U.S._STATE   | CAUSE.CATEGORY     |   duration_hours |   CUSTOMERS.AFFECTED |   DEMAND.LOSS.MW |
 |-------:|:-------------|:-------------------|-----------------:|---------------------:|-----------------:|
@@ -44,8 +41,6 @@ questions:
 |   2012 | Minnesota    | severe weather     |             2550 |                68200 |              nan |
 |   2015 | Minnesota    | severe weather     |             1740 |               250000 |              250 |
 ```
-
-</details>
 
 ### Univariate view
 
