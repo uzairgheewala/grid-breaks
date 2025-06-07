@@ -51,28 +51,33 @@ questions:
 **Fig 2.** Durations by cause — the fuel-supply box literally towers above all
 others.
 
-```markdown
 | CAUSE.CATEGORY | mean_duration | median_customers | count |\n|:------------------------------|----------------:|-------------------:|--------:|\n| fuel supply emergency | 13484.0 | 0.0 | 38.0 |\n| severe weather | 3899.7 | 111555.0 | 741.0 |\n| equipment failure | 1850.6 | 51500.0 | 54.0 |\n| public appeal | 1468.4 | 0.0 | 69.0 |\n| system operability disruption | 747.1 | 69000.0 | 120.0 |\n| intentional attack | 521.9 | 0.0 | 332.0 |\n| islanding | 200.5 | 2342.5 | 44.0 |
-```
 
 Severe-weather events are most common but not the longest; fuel-supply
 emergencies have mean duration > 3000 h.
 
 ---
 
-## Assessment of Missingness
+### Assessment of Missingness
 
-_Three numeric columns_ (`DEMAND.LOSS.MW`, `duration_hours`,
-`CUSTOMERS.AFFECTED`) contain ≤ 10 % missing values, most likely **MAR** –
-measurement sensors can fail randomly.
+_One high-missingness column_ – **`DEMAND.LOSS.MW`** (~45 % NaN) – reflects the
+fact that DOE only records MW loss when utilities supply it. The remaining
+model features have ≤30 % missingness, with location and calendar measures
+fully observed. These gaps are most likely **MAR** (measurement not always
+reported) rather than MCAR.
 
-A qualitative review suggests `CAUSE.CATEGORY` itself can be **NMAR**:
-utilities may delay classifying politically sensitive
-_intentional attacks_, leaving the field empty until investigations conclude.
+A qualitative review suggests **`CAUSE.CATEGORY`** itself can be **NMAR**:
+utilities may delay labelling politically sensitive _intentional attacks_,
+leaving the field blank until investigations conclude.
 
-<iframe src="assets/missing_bar.html" width="700" height="450" frameborder="0"></iframe>
+<iframe
+  src="assets/missing_bar.html"
+  width="700"
+  height="450"
+  frameborder="0">
+</iframe>
 
-**Fig 3.** Share of NaNs per modelling feature.
+**Fig 3.** Fraction of NaNs per feature; we median-impute in pipelines.
 
 ---
 
